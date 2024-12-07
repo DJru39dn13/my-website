@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You, Isabella</title>
+    <style>
+        /* General Body Styling */
+        body {
+            margin: 0;
+            background: radial-gradient(circle, #ff99cc, #ff66b2, #ff3366);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            color: white;
+        }
+
+        /* Title Styling */
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5), 0 0 20px #ff99cc;
+            animation: pulse 3s infinite;
+        }
+
+        /* Button Styling */
+        button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            color: #fff;
+            background-color: #ff66b2;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Heart Styling */
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff3366;
+            transform: rotate(45deg);
+            animation: float 6s infinite;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff3366;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: -15px;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-800px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                text-shadow: 0 0 20px #ff99cc, 0 0 30px #ff66b2, 0 0 40px #ff3366;
+            }
+            50% {
+                text-shadow: 0 0 30px #ff66b2, 0 0 50px #ff3366, 0 0 60px #ff0033;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>I Love You, Isabella</h1>
+    <button onclick="createHeartBurst()">Love you pretty girl</button>
+    <script>
+        // Function to create a single heart
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = window.innerHeight + "px";
+            document.body.appendChild(heart);
+
+            // Remove heart after animation
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        // Function to create multiple hearts at once
+        function createHeartBurst() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createHeart, i * 100); // Spread out creation for a burst effect
+            }
+        }
+
+        // Automatically generate hearts over time
+        setInterval(createHeart, 500); // Generate hearts every 500ms
+    </script>
+</body>
+</html>
